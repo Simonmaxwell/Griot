@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "description": "This is an Interactive character generator for NaLS",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "author": "The Good Maxwell <maxwellraden@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.12.4",
+    "morgan": "^1.7.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.1.2"
+  }
 }
