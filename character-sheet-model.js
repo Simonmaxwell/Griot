@@ -14,7 +14,6 @@ const CharacterSheet = {
   },
 
   get: function(id=null) {
-      console.log("I made it!");
     if (id !== null) {
       return this.characters.find(character => character.id === id);
     }else return this.characters;

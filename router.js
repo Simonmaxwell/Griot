@@ -15,12 +15,20 @@ router.get('/character-sheet', (req, res) => {
 	res.json(CharacterSheet.get());
 });
 
-router.put('/character-sheet/:id', function(req, res) {
+router.post('/character-sheet', jsonParser, (req, res) => {
+	const requiredFields = ['name', 'level'];
+	for (let i=0; i<requiredFields.length; i++) {
+		const field = requiredFields[i];
+		if (!(field in req.body)) {
+  		const message = `Missing \`${field}\` in request body`
+  		console.error(message);
+  		return res.status(400).send(message);
+		}
+	}
+	const item = CharacterSheet.create(req.body.name, req.body.level);
+    res.status(201).json(item);
 });
 
-router.post('/character-sheet', function(req, res) {
-
-});
 
 router.delete('/character-sheet/:id', function(req, res) {
 });
