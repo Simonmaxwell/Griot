@@ -19,7 +19,7 @@ const CharacterSheet = {
     }else return this.characters;
   },
 
-update: function(updatedCharacter) {
+  update: function(updatedCharacter) {
     const {id} = updatedCharacter;
     const characterIndex = this.characters.findIndex(
       character => character.id === updatedCharacter.id);
@@ -32,7 +32,7 @@ update: function(updatedCharacter) {
     return this.characters[characterIndex];
   },
 
-delete: function(id) {
+  delete: function(id) {
     const characterIndex = this.characters.findIndex(
       character => character.id === id);
     if (characterIndex > -1) {
