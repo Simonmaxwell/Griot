@@ -7,7 +7,7 @@ const jsonParser = bodyParser.json();
 const {CharacterSheet} = require('./character-sheet-model');
 
 CharacterSheet.create(
-  "Doug Jones", 5);
+  "Nug Jones", 5);
 CharacterSheet.create(
   "Craig Robertson", 8);
 
