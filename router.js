@@ -6,11 +6,6 @@ const jsonParser = bodyParser.json();
 
 const {CharacterSheet} = require('./character-sheet-model');
 
-CharacterSheet.create(
-  "Nug Jones", 5);
-CharacterSheet.create(
-  "Craig Robertson", 8);
-
 router.get('/character-sheet', (req, res) => {
 	res.json(CharacterSheet.get());
 });

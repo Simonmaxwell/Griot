@@ -4,12 +4,15 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 
 const {app, runServer, closeServer} = require('../server');
+const {CharacterSheet} = require('../character-sheet-model');
 
 chai.use(chaiHttp);
 
-describe('router', function() {
+describe('test-server', function() {
 
   before(function() {
+    CharacterSheet.create("Nug Jones", 5);
+    CharacterSheet.create("Craig Robertson", 8);
     return runServer();
   });
 
