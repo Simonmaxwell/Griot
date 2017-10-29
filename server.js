@@ -35,28 +35,6 @@ function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 }
 
 
-/*
-function runServer(databaseUrl=DATABASE_URL, port=PORT) {
-  return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, {
-      useMongoClient: true
-    }).then(() => {
-      app.listen(port, () => {
-        console.log(`Listening on port ${port}`);
-        resolve();
-      })
-      .on('error', err => {
-        mongoose.disconnect();
-        reject(err);
-      });
-    } , (err) => { return reject(err); }
-    );
-
-  })
-};
-*/
-
-
 function closeServer() {
   return mongoose.disconnect().then(() => {
      return new Promise((resolve, reject) => {
