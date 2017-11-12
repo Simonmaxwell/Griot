@@ -1,5 +1,16 @@
 const uuid = require('uuid');
 
+function validate(req) {
+  const requiredFields = [ 'name', 'level'];
+  for (let i=0; i<requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      return false;
+    }
+    return true;
+  }
+}
+
 const CharacterSheet = {
 
   create: function(name, level) {
@@ -12,6 +23,7 @@ const CharacterSheet = {
     console.log(character);
     return character;
   },
+
 
   get: function(id=null) {
     if (id !== null) {
