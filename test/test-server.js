@@ -83,32 +83,33 @@ describe('test-server', function() {
       });
   });
 
-  // it('should update character sheets on PUT', function() {
-  //   return chai.request(app)
-  //     .get('/character-sheet')
-  //     .then(function( res) {
-  //       const updatedSheet = Object.assign(res.body[0], {
-  //         name: 'Call me Ishmael',
-  //         level: 35
-  //       });
-  //       return chai.request(app)
-  //         .put(`/character-sheet/${res.body[0].id}`)
-  //         .send(updatedSheet)
-  //         .then(function(res) {
-  //           res.should.have.status(200);
-  //         });
-  //     });
-  // }); 
+  it('should update character sheets on PUT', function() {
+    return chai.request(app)
+      .get('/character-sheet')
+      .then(function( res) {
+        const updatedSheet = Object.assign(res.body[0], {
+          name: 'Call me Ishmael',
+          level: 35
+        });
+        return chai.request(app)
+          .put(`/character-sheet/${res.body[0]._id}`)
+          .send(updatedSheet)
+          .then(function(res) {
+            res.should.have.status(200);
+            res.body.name.should.equal('Call me Ishmael');
+          });
+      });
+  }); 
 
-  // it('should delete character sheets on DELETE', function() {
-  // 	return chai.request(app)
-  // 	.get('/character-sheet')
-  // 	.then(function(res) {
-  // 	   return chai.request(app)
-  // 		.delete(`/character-sheet/${res.body[0].id}`)
-  // 		.then(function(res) {
-  // 			res.should.have.status(204)
-  // 		});
-  // 	});
-  // });
+  it('should delete character sheets on DELETE', function() {
+  	return chai.request(app)
+  	.get('/character-sheet')
+  	.then(function(res) {
+  	   return chai.request(app)
+  		.delete(`/character-sheet/${res.body[0]._id}`)
+  		.then(function(res) {
+  			res.should.have.status(204)
+  		});
+  	});
+  });
 });
