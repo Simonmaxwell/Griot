@@ -2,14 +2,14 @@
   "name": "Griot",
   "version": "1.0.0",
   "description": "This is an Interactive character generator for NaLS",
-  "main": "index.js",
-  "scripts": {
+  "script": {
     "test": "mocha"
   },
   "author": "The Good Maxwell <maxwellraden@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cors": "^2.8.4",
     "express": "^4.12.4",
     "mongoose": "^4.12.4",
     "morgan": "^1.7.0",

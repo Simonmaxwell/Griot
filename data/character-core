@@ -1,0 +1,23 @@
+Character = {	
+	Name: ,
+	Experience ,
+	Species: ,
+	Age: ,
+	Height: ,
+	Influence ,
+	Presence: ,
+	Sympathy: ,
+	Resolve: ,
+	Elegance: , 
+	Perceptions: [
+		
+	] ,
+	Traits: [
+
+	],
+	Trades: {
+		Name: ,
+		Level: 
+	}
+	
+}

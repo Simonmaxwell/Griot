@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 
+const cors = require('cors');
+
 const morgan = require('morgan');
 
 const app = express();
@@ -10,6 +12,7 @@ const router = require('./router');
 mongoose.Promise = global.Promise;
 const {PORT, DATABASE_URL} = require('./config');
 
+app.use(cors());
 app.use(morgan('common'));
 app.use(router);
 
