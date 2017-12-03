@@ -1,13 +1,12 @@
 const express = require('express');
 const path = require('path');
-
 const cors = require('cors');
-
 const morgan = require('morgan');
 
-const app = express();
 const mongoose = require('mongoose');
 const router = require('./router');
+
+const app = express();
 
 mongoose.Promise = global.Promise;
 const {PORT, DATABASE_URL} = require('./config');

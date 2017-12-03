@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
-var characterSheetSchema = new Schema({
+var characterSheetSchema = mongoose.Schema({
 	name: String,
 	level: Number,
 });

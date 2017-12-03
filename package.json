@@ -2,7 +2,7 @@
   "name": "Griot",
   "version": "1.0.0",
   "description": "This is an Interactive character generator for NaLS",
-  "script": {
+  "scripts": {
     "test": "mocha"
   },
   "author": "The Good Maxwell <maxwellraden@gmail.com>",
