@@ -31,7 +31,6 @@ describe('test-server', function() {
       .post('/character-sheet')
       .send(newSheet)
     
-
   });
 
   afterEach(function() {
