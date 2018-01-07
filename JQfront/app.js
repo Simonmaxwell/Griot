@@ -2,7 +2,7 @@ $(document).ready(function() {
 	
 	function getCharacters() {
 		let settings = {
-			url: 'http://localhost:8090/character-sheet',
+			url: '/character-sheet',
 			type: 'GET',
 			dataType: 'json',
 			success: showCharacters
@@ -42,7 +42,7 @@ $(document).ready(function() {
 
 	function postCharacter(data) {
 		let settings = {
-			url: 'http://localhost:8090/character-sheet',
+			url: '/character-sheet',
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
 	function putCharacter(data) {
 		let settings = {
-			url: 'http://localhost:8090/character-sheet/' + data._id,
+			url: '/character-sheet/' + data._id,
 			type: 'PUT',
 			dataType: 'json',
 			contentType: 'application/json',
