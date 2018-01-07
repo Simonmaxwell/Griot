@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const router = require('./router');
 
 const app = express();
+app.use(express.static('/JQfront'));
 
 mongoose.Promise = global.Promise;
 const {PORT, DATABASE_URL} = require('./config');
