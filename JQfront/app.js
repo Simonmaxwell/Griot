@@ -47,7 +47,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			contentType: 'application/json',
 			data: JSON.stringify(data),
-			success: showCharacters
+			success: getCharacters
 		};
 		console.log(settings);
 		$.ajax(settings);
