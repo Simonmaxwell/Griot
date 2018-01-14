@@ -38,7 +38,13 @@ router.post('/character-sheet', jsonParser, (req, res) => {
   CharacterSheet
   .create({
     name: req.body.name,
-    level: req.body.level
+    species: req.body.species,
+    level: req.body.level,
+    influence: req.body.influence,
+    presence: req.body.presence,
+    sympathy: req.body.sympathy,
+    resolve: req.body.resolve,
+    elegance: req.body.elegance
   })
   .then(characterSheet => {
     console.log("hey man it sent:", req.body)

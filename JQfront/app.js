@@ -19,6 +19,11 @@ $(document).ready(function() {
 		$("#character-dropdown").html(options);
 	};
 
+	function characterDisplay(data) {
+		var html = '';
+		html += ``
+	};
+
 	$("#character-form").submit(function(e) {
 		console.log("what");
 		e.preventDefault();

@@ -1,0 +1,29 @@
+html, body {
+	height: 100%;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	top: 0;
+	height: 4vh;
+	width: 100%;
+	padding-top: 1vh;
+	padding-left:.5rem;
+	padding-right:.5rem;
+	padding-bottom: .25rem;
+	background-color: white;
+	z-index: 6;
+}
+
+.nav-button {
+	background-color: black;
+	color: white;
+	height: 3.5vh;
+	width: 31vw;
+	margin-right: 1rem;
+	font-weight: bold;
+	font-family: "Roboto";
+	border: none;
+}

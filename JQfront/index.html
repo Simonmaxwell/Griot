@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">	
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">	
+	<link rel="stylesheet" type="text/css" href="main.css">	
 	<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+	src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+	<script src="https://use.fontawesome.com/ca306a4003.js">
+	</script>
 	<script type="text/javascript" src="app.js"></script>
 	<link rel="stylesheet" type="text/css" href="main.css">
+
 	<title></title>
 </head>
 <body>
-	<h1>Griot</h1>
-	<div id="new-character">
-		<form id="character-form">
-			<label for="name">Name</label>
-			<input id="new-name" type="text" name="name">
-			<label for="level">Level</label>
-			<input id="new-level" type="number" name="level">
-			<button type="submit">Submit</button>
-		</form>
+	<nav>
+		<button class="nav-button search-button" type="submit">Search</button>
+		<button id="re-fridge-button" class="nav-button" type="submit">Character Sheets</button>
+		<a href="https://github.com/Simonmaxwell/re-Fridge"> <button id="github-button" class="nav-button" type="submit">GitHub</button> </a>
+	</nav>
+	<div class="splash-page-container">
+		
 	</div>
-	<div id="update-character">
-		<form id="update-character-form">
-			<label for="name">Name</label>
-			<select id="character-dropdown"></select>
-			<input id="name" type="text" name="name">
-			<label for="level">Level</label>
-			<input id="level" type="number" name="level">
-			<button type="submit">Submit</button>
-		</form>
+	<div class="charceter-sheet-container">
+		<h1>Griot</h1>
+		<div id="new-character">
+			<form id="character-form">
+				<label for="name">Name</label>
+				<input id="new-name" type="text" name="name">
+				<label for="level">Level</label>
+				<input id="new-level" type="number" name="level">
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+		<div id="update-character">
+			<form id="update-character-form">
+				<label for="name">Name</label>
+				<select id="character-dropdown"></select>
+				<input id="name" type="text" name="name">
+				<label for="level">Level</label>
+				<input id="level" type="number" name="level">
+				<button type="submit">Submit</button>
+			</form>
+		</div>
 	</div>
-
 </body>
 </html>
