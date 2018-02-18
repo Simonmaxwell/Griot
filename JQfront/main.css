@@ -7,7 +7,7 @@ nav {
 	justify-content: space-between;
 	position: fixed;
 	top: 0;
-	height: 4vh;
+	height: 2vh;
 	width: 100%;
 	padding-top: 1vh;
 	padding-left:.5rem;
@@ -26,4 +26,42 @@ nav {
 	font-weight: bold;
 	font-family: "Roboto";
 	border: none;
+}
+
+
+#splash-page-container {
+	display: flex;
+	justify-content: center;
+	height: 99vh;
+	color: white;
+	font-weight: bold;
+	font-family: "Roboto";
+	align-items: center;
+}
+
+#title {
+	align-items: center;
+	font-size: 2rem;
+	align-items: top;
+	margin-bottom: 3vh;
+}
+
+#landing-page-inner {
+	border-radius: 15px;
+	padding: 2em;
+	background-color: black;
+	width: 80%;
+}
+
+#landing-page-inner div {
+	text-align: center;
+}
+
+#welcome-button {
+	border:none;
+	border-radius: 5px;
+	height: 3.5vh;
+	margin-top: 3vh;
+	color: black;
+	background-color: white;
 }

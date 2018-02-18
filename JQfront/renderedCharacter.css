@@ -1,0 +1,7 @@
+.rendered-character{
+	display: inline-block;
+	width: 20%;
+	border: 1px black solid;
+	padding: 5px;
+}
+

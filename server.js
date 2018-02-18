@@ -2,16 +2,14 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
-
 const mongoose = require('mongoose');
 const router = require('./router');
-
 const app = express();
-app.use(express.static('JQfront'));
-
-mongoose.Promise = global.Promise;
 const {PORT, DATABASE_URL} = require('./config');
 
+mongoose.Promise = global.Promise;
+
+app.use(express.static('JQfront'));
 app.use(cors());
 app.use(morgan('common'));
 app.use(router);

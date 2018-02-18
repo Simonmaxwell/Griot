@@ -33,6 +33,10 @@ router.get('/character-sheet/:id', (req, res) => {
     })	
 });
 
+router.get('/character-sheet/:user', (req, res) => {
+
+});
+
 router.post('/character-sheet', jsonParser, (req, res) => {
   console.log("I have this thing:", req.body);
   CharacterSheet
