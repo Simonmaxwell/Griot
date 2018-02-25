@@ -9,13 +9,6 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-
-
-      if (!user.comparePassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-
-
       user.comparePassword(password, function(err, matched) {
         if (matched) {
           return done(null, user);
@@ -23,7 +16,6 @@ passport.use(new LocalStrategy(
           return done(null, false, { message: 'Incorrect password.' });
         }
       });
-
     });
   }
 ));

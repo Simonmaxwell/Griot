@@ -1,15 +1,23 @@
 const express = require('express');
 const router = require('express').Router();
+require('./authRouter'); // set up local strategy
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const mongoose = require('mongoose');
+const passport= require('passport');
 
 mongoose.Promise = global.Promise;
 
 const {CharacterSheet} = require('./character-sheet-schema');
 
-router.get('/character-sheet', (req, res) => {
+//router.get('/login', (req, res) => {
+  //console.log(`I'm listening`);
+//})
+
+router.get('/character-sheet',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+ (req, res) => {
   console.log("Getting all character-sheets");
 	CharacterSheet
     .find()
@@ -31,10 +39,6 @@ router.get('/character-sheet/:id', (req, res) => {
       console.error(err);
       res.status(500).json({message: 'Internal server error'});
     })	
-});
-
-router.get('/character-sheet/:user', (req, res) => {
-
 });
 
 router.post('/character-sheet', jsonParser, (req, res) => {

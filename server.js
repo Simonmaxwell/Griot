@@ -6,12 +6,20 @@ const mongoose = require('mongoose');
 const router = require('./router');
 const app = express();
 const {PORT, DATABASE_URL} = require('./config');
+const passport = require('passport');
 
 mongoose.Promise = global.Promise;
 
 app.use(express.static('JQfront'));
 app.use(cors());
 app.use(morgan('common'));
+
+var session = require("express-session");
+
+app.use(session({secret: "Z4blealo$!"}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(router);
 
 let server;
