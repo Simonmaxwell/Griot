@@ -1,5 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
+const {User} = require('./user-schema');
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -8,10 +9,21 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+
+
+      if (!user.comparePassword(password)) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      return done(null, user);
+
+
+      user.comparePassword(password, function(err, matched) {
+        if (matched) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+      });
+
     });
   }
 ));
