@@ -1,9 +1,13 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
+const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const {User} = require('./user-schema');
+const {secret} = require('./config');
 
-passport.use(new LocalStrategy(
+
+const localStrategy = new LocalStrategy(
   function(username, password, done) {
+    console.log("in the authrouter");
     User.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
@@ -18,4 +22,17 @@ passport.use(new LocalStrategy(
       });
     });
   }
-));
+);
+
+const jwtStrategy = new JwtStrategy(
+  {
+    secretOrKey: secret,
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
+    algorithms: ['HS256']
+  },
+  (payload, done) => {
+    done(null, payload.user);
+  }
+);
+
+module.exports = { localStrategy, jwtStrategy };

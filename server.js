@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -5,7 +6,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const router = require('./router');
 const app = express();
-const {PORT, DATABASE_URL} = require('./config');
+const {PORT, DATABASE_URL, secret} = require('./config');
 const passport = require('passport');
 
 mongoose.Promise = global.Promise;
@@ -16,11 +17,13 @@ app.use(morgan('common'));
 
 var session = require("express-session");
 
-app.use(session({secret: "Z4blealo$!"}));
+app.use(session({secret: secret,
+                saveUninitialized: true,
+                resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(router);
+app.use("/", router);
 
 let server;
 

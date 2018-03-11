@@ -1,4 +1,4 @@
-//Mongoose pres-save password hashing from: http://devsmash.com/blog/password-authentication-with-mongoose-and-bcrypt
+//Mongoose pre-save password hashing from: http://devsmash.com/blog/password-authentication-with-mongoose-and-bcrypt
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
@@ -21,6 +21,12 @@ UserSchema.pre('save', function(next) {
         });
     });
 });
+
+UserSchema.methods.serialize = function() {
+  return {
+    username: this.username
+  };
+};
 
 UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {

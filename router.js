@@ -1,23 +1,49 @@
 const express = require('express');
 const router = require('express').Router();
-require('./authRouter'); // set up local strategy
+const jwt = require('jsonwebtoken');
+const { localStrategy, jwtStrategy } = require('./strategies');
 
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 const mongoose = require('mongoose');
 const passport= require('passport');
+const { secret, JWT_EXPIRY} = require('./config');
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
 mongoose.Promise = global.Promise;
 
 const {CharacterSheet} = require('./character-sheet-schema');
 
-//router.get('/login', (req, res) => {
-  //console.log(`I'm listening`);
-//})
+///////////////////////////////////////////////////////////////
 
-router.get('/character-sheet',
-  passport.authenticate('local', { failureRedirect: '/login' }),
- (req, res) => {
+const createAuthToken = function(user) {
+  return jwt.sign({user}, secret, {
+    subject: user.username,
+    expiresIn: JWT_EXPIRY,
+    algorithm: 'HS256'
+  });
+};
+
+const localAuth = passport.authenticate('local', {session: false});
+router.use(bodyParser.json());
+// The user provides a username and password to login
+router.post('/login', localAuth, (req, res) => {
+  const authToken = createAuthToken(req.user.serialize());
+  res.json({authToken});
+});
+
+const jwtAuth = passport.authenticate('jwt', {session: false});
+// The user exchanges a valid JWT for a new one with a later expiration
+router.post('/refresh', jwtAuth, (req, res) => {
+  const authToken = createAuthToken(req.user);
+  res.json({authToken});
+});
+
+///////////////////////////////////////////////////////////////
+
+router.get('/character-sheet', (req, res) => {
   console.log("Getting all character-sheets");
 	CharacterSheet
     .find()
