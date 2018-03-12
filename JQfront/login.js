@@ -4,9 +4,8 @@ $(document).ready(function() {
 		console.log("what");
 		e.preventDefault();
 		let user = {};
-		user.name = $("#username").val();
+		user.username = $("#username").val();
 		user.password = $("#password").val();
-		console.log(character);
 		loginUser(user);
 	});
 	
@@ -17,9 +16,11 @@ $(document).ready(function() {
 			dataType: 'json',
 			contentType: 'application/json',
 			data: JSON.stringify(data),
-			success: 
+			success: function(data) { 
+				localStorage.setItem("token", data.authToken)
+			}
 		};
 		console.log(settings);
 		$.ajax(settings);
-	}
-};
+	};
+});

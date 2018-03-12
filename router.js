@@ -28,14 +28,12 @@ const createAuthToken = function(user) {
 
 const localAuth = passport.authenticate('local', {session: false});
 router.use(bodyParser.json());
-// The user provides a username and password to login
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.serialize());
   res.json({authToken});
 });
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
-// The user exchanges a valid JWT for a new one with a later expiration
 router.post('/refresh', jwtAuth, (req, res) => {
   const authToken = createAuthToken(req.user);
   res.json({authToken});
@@ -43,7 +41,7 @@ router.post('/refresh', jwtAuth, (req, res) => {
 
 ///////////////////////////////////////////////////////////////
 
-router.get('/character-sheet', (req, res) => {
+router.get('/character-sheet', jwtAuth, (req, res) => {
   console.log("Getting all character-sheets");
 	CharacterSheet
     .find()

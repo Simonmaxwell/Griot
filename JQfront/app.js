@@ -3,8 +3,12 @@ $(document).ready(function() {
 	$(".character-sheet-container").hide();
 	
 	function getCharacters() {
+		let authToken = localStorage.getItem("token");
 		let settings = {
 			url: '/character-sheet',
+			headers: {
+				Authorization: 'Bearer '+ authToken
+			},
 			type: 'GET',
 			dataType: 'json',
 			success: showCharacters
@@ -27,6 +31,7 @@ $(document).ready(function() {
 		var html = `
 		<div class="rendered-character" data=${character._id}>
 			<button class="edit">edit</button>
+			<button class="delete">delete</button>
 			<h3 class="character-name">${character.name}</h3>
 			<h4 class="character-level">${character.level}</h4>
 			<div class="stats">
@@ -43,6 +48,10 @@ $(document).ready(function() {
 
 	$(document).on("click",".edit", function() {
 		console.log($(this).parent().attr("data"));
+	});
+
+	$(document).on("click",".delete", function() {
+		deleteCharacter($(this).parent().attr("data"));
 	});
 
 	function characterDisplay(data) {
@@ -105,6 +114,17 @@ $(document).ready(function() {
 			dataType: 'json',
 			contentType: 'application/json',
 			data: JSON.stringify(data),
+			success: getCharacters
+		};
+		$.ajax(settings);
+	}
+
+	function deleteCharacter(data) {
+		let settings = {
+			url: '/character-sheet/' + data,
+			type: 'DELETE',
+			dataType: 'string',
+			contentType: 'text',
 			success: getCharacters
 		};
 		$.ajax(settings);
