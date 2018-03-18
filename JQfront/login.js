@@ -9,15 +9,16 @@ $(document).ready(function() {
 		loginUser(user);
 	});
 	
-	function loginUser(data) {
+	function loginUser(user) {
 		let settings = {
 			url: '/login',
 			type: 'POST',
 			dataType: 'json',
 			contentType: 'application/json',
-			data: JSON.stringify(data),
+			data: JSON.stringify(user),
 			success: function(data) { 
 				localStorage.setItem("token", data.authToken)
+				localStorage.setItem("user", user.username)
 			}
 		};
 		console.log(settings);

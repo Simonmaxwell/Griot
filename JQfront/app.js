@@ -2,8 +2,9 @@ $(document).ready(function() {
 
 	function getCharacters() {
 		let authToken = localStorage.getItem("token");
+		let user = localStorage.getItem("user");
 		let settings = {
-			url: '/character-sheet',
+			url: `/character-sheet/${user}`,
 			headers: {
 				Authorization: 'Bearer '+ authToken
 			},
@@ -25,7 +26,7 @@ $(document).ready(function() {
 		};
 		console.log(settings);
 		$.ajax(settings);
-	}
+	};
 
 	function putCharacter(data) {
 		let settings = {
@@ -37,7 +38,7 @@ $(document).ready(function() {
 			success: getCharacters
 		};
 		$.ajax(settings);
-	}
+	};
 
 	function deleteCharacter(data) {
 		let settings = {
@@ -48,7 +49,7 @@ $(document).ready(function() {
 			success: getCharacters
 		};
 		$.ajax(settings);
-	}
+	};
 
 	function characterRender(character) {
 		var html = `
@@ -78,11 +79,12 @@ $(document).ready(function() {
 	};
 
 	$(".character-sheet-container").hide();
-	$("#update-character").hide()
+	$("#update-character").hide();
 
 
 	$(document).on("click",".edit", function() {
 		$("#update-character").show();
+		$("#test-div").hide();
 		let selectedCharacter = $(this).parent().attr("data");
 		$("#update-character").attr("data-woohoo", selectedCharacter);
 	});
@@ -95,6 +97,7 @@ $(document).ready(function() {
 		console.log("what");
 		e.preventDefault();
 		let character = {};
+		character.user = localStorage.getItem("user");
 		character.name = $("#new-name").val();
 		character.species = $("#new-species").val();
 		character.level = parseInt($("#new-level").val());
@@ -110,8 +113,9 @@ $(document).ready(function() {
 	$("#update-character-form").submit(function(e) {
 		e.preventDefault();
 		let updatedCharacter = {
-			_id : $("#update-character").attr("data-woohoo"),
+			_id : $("#update-character").attr("data-woohoo")
 		};
+		updatedCharacter.name= $("#name").val();
 		updatedCharacter.level = parseInt($("#level").val());
 		updatedCharacter.influence = parseInt($("#influence").val());
 		updatedCharacter.presence = parseInt($("#presence").val());
@@ -121,7 +125,8 @@ $(document).ready(function() {
 		console.log(updatedCharacter);
 		putCharacter(updatedCharacter);
 		$("#update-character").hide();
-	})
+		$("#test-div").show()
+	});
 
 	getCharacters();
 

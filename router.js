@@ -41,10 +41,10 @@ router.post('/refresh', jwtAuth, (req, res) => {
 
 ///////////////////////////////////////////////////////////////
 
-router.get('/character-sheet', jwtAuth, (req, res) => {
+router.get('/character-sheet/:user', jwtAuth, (req, res) => {
   console.log("Getting all character-sheets");
 	CharacterSheet
-    .find()
+    .find({user: req.params.user})
     .then(characterSheets => {
       console.log("What?", characterSheets);
       res.status(200).json(characterSheets);
@@ -55,7 +55,7 @@ router.get('/character-sheet', jwtAuth, (req, res) => {
     })
 });
 
-router.get('/character-sheet/:id', (req, res) => {
+router.get('/character-sheet/detail/:id', (req, res) => {
   CharacterSheet
     .findById(req.params.id)
     .then(characterSheet => res.status(200).json(characterSheet))
@@ -69,6 +69,7 @@ router.post('/character-sheet', jsonParser, (req, res) => {
   console.log("I have this thing:", req.body);
   CharacterSheet
   .create({
+    user: req.body.user,
     name: req.body.name,
     species: req.body.species,
     level: req.body.level,

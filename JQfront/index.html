@@ -34,9 +34,10 @@
 		</div>
 	</div>
 
-	<div id="character-sheet-container" class="container">
-		<div id="new-character">
+	<div id="character-sheet-container">
+		<div id="new-character" class="rendered-character">
 			<form id="character-form">
+				<h3>New Character</h3>
 				<label for="name">Name</label>
 				<input id="new-name" type="text" name="name">
 				<label for="species">Species</label>
@@ -58,9 +59,11 @@
 				<button type="submit">Submit</button>
 			</form>
 		</div>
-		<div id="update-character">
+		<div id="update-character" class="rendered-character">
 			<form id="update-character-form">
 				<label for="name">Name</label>
+				<input id="name" type="text" name="">
+				<br />
 				<label for="level">Level</label>
 				<input id="level" type="number" name="level">
 
