@@ -1,23 +1,20 @@
 Character = {	
-	Name: ,
-	Experience ,
-	Species: ,
-	Age: ,
-	Height: ,
-	Influence ,
-	Presence: ,
-	Sympathy: ,
-	Resolve: ,
-	Elegance: , 
-	Perceptions: [
-		
-	] ,
-	Traits: [
-
-	],
+	Name: string,
+	Experience int,
+	Species: string,
+	Age: int,
+	Height: int,
+	Influence int,
+	Presence: int,
+	Sympathy: int,
+	Resolve: int,
+	Elegance: int, 
+	Perceptions: [] ,
+	Traits: [],
 	Trades: {
 		Name: ,
 		Level: 
-	}
+	},
+	
 	
 }
