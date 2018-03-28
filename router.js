@@ -14,6 +14,7 @@ passport.use(jwtStrategy);
 
 mongoose.Promise = global.Promise;
 
+const {User} = require('./user-schema');
 const {CharacterSheet} = require('./character-sheet-schema');
 
 ///////////////////////////////////////////////////////////////
@@ -26,18 +27,38 @@ const createAuthToken = function(user) {
   });
 };
 
+const jwtAuth = passport.authenticate('jwt', {session: false});
 const localAuth = passport.authenticate('local', {session: false});
+
 router.use(bodyParser.json());
+
 router.post('/login', localAuth, (req, res) => {
   const authToken = createAuthToken(req.user.serialize());
   res.json({authToken});
 });
 
-const jwtAuth = passport.authenticate('jwt', {session: false});
 router.post('/refresh', jwtAuth, (req, res) => {
   const authToken = createAuthToken(req.user);
   res.json({authToken});
 });
+
+router.post('/register', (req, res) => {
+  User
+    //.find(check to see user exists?)
+    .create({
+      username: req.body.username,
+      password: req.body.password
+    })
+    .then(user => {
+      console.log("Yo dog you made:", user);
+      res.status(201).json(User);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({message: 'Internal server error'});
+    })
+});
+ 
 
 ///////////////////////////////////////////////////////////////
 
