@@ -43,6 +43,7 @@ router.post('/refresh', jwtAuth, (req, res) => {
 });
 
 router.post('/register', (req, res) => {
+  console.log(req.body);
   User
     //.find(check to see user exists?)
     .create({
