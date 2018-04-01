@@ -11,6 +11,7 @@ $(document).ready(function() {
 			type: 'GET',
 			dataType: 'json',
 			success: characterDisplay
+			//error: window.location.href = "./login.html"
 		};
 		$.ajax(settings);
 	};
@@ -129,6 +130,13 @@ $(document).ready(function() {
 	});
 
 	getCharacters();
+
+	$("#logout-button").click(() => {
+		console.log(" logout clicked");
+		localStorage.removeItem("token"),
+		localStorage.removeItem("user"),
+		window.location.href = "./login.html"
+	});
 
 	$("#splash-page-container").click(() => {
 		$("#splash-page-container").hide();

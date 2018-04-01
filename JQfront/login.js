@@ -24,7 +24,8 @@ $(document).ready(function() {
 			data: JSON.stringify(user),
 			success: function(data) { 
 				localStorage.setItem("token", data.authToken),
-				localStorage.setItem("user", user.username)
+				localStorage.setItem("user", user.username),
+				window.location.href = "./index.html"
 			}
 		};
 		console.log(settings);
