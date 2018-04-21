@@ -1,25 +1,8 @@
-
-
-.form-container{
-	width: 50%;
-	background:rgba(41, 41, 41, 0.82);
-    padding: 2rem 4.5rem;
-    margin: 0 auto;
-}
-
 body {
-    -webkit-box-orient: horizontal !important;
-    -webkit-box-direction: normal !important;
-        -ms-flex-direction: row !important;
-            flex-direction: row !important;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-                -ms-grid-row-align: center;
-            align-items: center;
-    color: #dcdcdc;
-    -webkit-perspective: 2000px;
-    perspective: 2000px;
+    background: #212121;
+    margin: 0;
 }
+
 form {
     margin:auto;
     width:100%;
@@ -34,7 +17,7 @@ form .horizontal:last-child {
     margin-bottom:0;
 }
 
-input {
+input[type="username"], input[type="password"] {
     border-radius: .5rem;
     padding: 0.5rem;
     border:none;
@@ -45,20 +28,37 @@ input {
             transition-duration: 1.5s;
     letter-spacing: .25rem;
     height:2.25rem;
+    margin-bottom: .5rem;
 }
-input[id="username"]:active, input[id="password"]:active,
+input[type="username"]:active, input[type="password"]:active,
 input[type="username"]:focus, input[type="password"]:focus {
     border:none;
     outline:none;
 }
-input[type="submit"] {
+.form-button {
     width:50%;
     border:none;
     background:#7f7f7f;
     color:#dcdcdc;
     border-radius: .5rem;
     cursor:pointer;
+    margin:.5rem;
 }
-input.incorrect {
-    background:black;
+
+.form-container {
+	margin: 50px auto;
+	width: 640px;
+	color:#dcdcdc;
 }
+ 
+.quick-fix {
+    background: #626363;
+    position: relative;
+    margin: 0 auto;
+    padding: 20px 20px 20px;
+    width: 310px;
+    border: #545454;
+    border-width: 10px;
+    border-style: solid;
+}
+

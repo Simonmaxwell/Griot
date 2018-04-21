@@ -52,7 +52,7 @@ router.post('/register', (req, res) => {
     })
     .then(user => {
       console.log("Yo dog you made:", user);
-      res.status(201).json(User);
+      res.status(201).json(user);
     })
     .catch(err => {
       console.error(err);

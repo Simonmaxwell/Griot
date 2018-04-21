@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+	var currentCharacter = {};
+
+	function inCaseOfTrouble() {
+		window.location.href = "/login.html";
+	};
+
 	function getCharacters() {
 		let authToken = localStorage.getItem("token");
 		let user = localStorage.getItem("user");
@@ -10,11 +16,31 @@ $(document).ready(function() {
 			},
 			type: 'GET',
 			dataType: 'json',
-			success: characterDisplay
-			//error: window.location.href = "./login.html"
+			success: characterDisplay,
+			error: inCaseOfTrouble
 		};
 		$.ajax(settings);
 	};
+
+	function getCharacterById(selectedCharacter, resolve, reject) {
+		let setCurrentCharacter = function(data) {
+			currentCharacter = data;
+			console.log("bababa");
+			resolve();
+		}
+		let authToken = localStorage.getItem("token");
+		let user = localStorage.getItem("user");
+		let settings = {
+			url: `character-sheet/detail/${selectedCharacter}`,
+			headers: {
+				Authorization: 'Bearer ' + authToken
+			},
+			type: 'GET',
+			dataType: 'json',
+			success: setCurrentCharacter
+		};
+		$.ajax(settings)
+	}
 
 	function postCharacter(data) {
 		let settings = {
@@ -55,8 +81,6 @@ $(document).ready(function() {
 	function characterRender(character) {
 		var html = `
 		<div class="rendered-character" data=${character._id}>
-			<button class="edit">edit</button>
-			<button class="delete">delete</button>
 			<h3 class="character-name">${character.name}</h3>
 			<h4 class="character-level">Level:${character.level}</h4>
 			<div class="stats">
@@ -66,6 +90,8 @@ $(document).ready(function() {
 				<p>resolve:${character.resolve}</p>
 				<p>elegance:${character.elegance}</p>
 			</div>
+			<button class="character-buttons edit">edit</button>
+			<button class="character-buttons delete">delete</button>
 		</div>`
 		return html;
 	};
@@ -79,19 +105,33 @@ $(document).ready(function() {
 		$("#test-div").html(html);
 	};
 
-	$(".character-sheet-container").hide();
-	$("#update-character").hide();
-
 
 	$(document).on("click",".edit", function() {
 		$("#update-character").show();
 		$("#test-div").hide();
 		let selectedCharacter = $(this).parent().attr("data");
-		$("#update-character").attr("data-woohoo", selectedCharacter);
+		
+		new Promise(function(resolve, reject) {
+			getCharacterById(selectedCharacter, resolve, reject);
+		})
+		.then(function() {
+			console.log("chachacha");
+			console.log("current character:", currentCharacter);
+	 		$("#name").val(currentCharacter.name);
+	 		$("#level").val(currentCharacter.level);
+	 		$("#influence").val(currentCharacter.influence);
+	 		$("#presence").val(currentCharacter.presence);
+	 		$("#sympathy").val(currentCharacter.sympathy);
+	 		$("#resolve").val(currentCharacter.resolve);
+	 		$("#elegance").val(currentCharacter.elegance);
+	 		$("#update-character").attr("data-woohoo", selectedCharacter);
+		}).catch(function() { console.log("honk"); });
 	});
 
 	$(document).on("click",".delete", function() {
-		deleteCharacter($(this).parent().attr("data"));
+		if (confirm("Are you sure?")) {
+			deleteCharacter($(this).parent().attr("data"));
+		};
 	});
 
 	$("#character-form").submit(function(e) {
@@ -109,6 +149,8 @@ $(document).ready(function() {
 		character.elegance = parseInt($("#new-elegance").val());
 		console.log(character);
 		postCharacter(character);
+		$("#character-form").hide();
+		$("#new-character-button").show();
 	});
 
 	$("#update-character-form").submit(function(e) {
@@ -129,7 +171,6 @@ $(document).ready(function() {
 		$("#test-div").show()
 	});
 
-	getCharacters();
 
 	$("#logout-button").click(() => {
 		console.log(" logout clicked");
@@ -138,8 +179,14 @@ $(document).ready(function() {
 		window.location.href = "./login.html"
 	});
 
-	$("#splash-page-container").click(() => {
-		$("#splash-page-container").hide();
-		$(".character-sheet-container").show();
+	$("#new-character-button").click(() => {
+		$("#character-form").show();
+		$("#new-character-button").hide();
 	});
+
+	$("#update-character").hide();
+	$("#character-form").hide();
+
+	getCharacters();
+	
 });

@@ -17,37 +17,50 @@
     <title></title>
 </head>
 <body>
+
+<!-- <div id="splash-page-container">
+        <div id="landing-page-inner">
+            <div id="title">Griot</div> 
+            Welcome to Griot. This is a tool for creating and editing character sheets for the NaLS tabletop system. With Griot you can create new character sheets as well as view and edit existing sheets.
+            <div><button id="welcome-button">Start</button></div>
+        </div>
+    </div> -->
+    
 <div class="form-container">
-    <div id="login-form"> 
-        <form action="/login" method="post">
-            <div>
-                <label>Username:</label>
-                <input id="username" type="text" name="username"/>
-            </div>
-            <div>
-                <label>Password:</label>
-                <input id="password" type="password" name="password"/>
-            </div>
-            <div>
-                <input type="submit" value="Log In"/>
-            </div>
-        </form>
-    </div>
-    <div id="registration-form"> 
-        <form action="/register" method="post">
-            <div>
-                <label>Username:</label>
-                <input id="new-username" type="text" name="username"/>
-            </div>
-            <div>
-                <label>Password:</label>
-                <input id="new-password" type="password" name="password"/>
-            </div>
-            <div>
-                <input type="submit" value="Register"/>
-            </div>
-        </form>
-    </div>
+    <div class="quick-fix">
+        <div id="login-form"> 
+            <h3>Login</h3>
+            <form action="/login" method="post">
+                <div>
+                    <label>Username:</label>
+                    <input id="username" type="username" name="username"/>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input id="password" type="password" name="password"/>
+                </div>
+                <div>
+                    <input class="form-button"  type="submit" value="Log In"/>  <button class="form-button"  id="register-button">Register</button>
+                </div>
+            </form>
+        </div>
+        <div id="registration-form"> 
+            <h3>Register</h3>
+            <form action="/register" method="post">
+                <div>
+                    <label>Username:</label>
+                    <input id="new-username" type="username" name="username"/>
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input id="new-password" type="password" name="password"/>
+                </div>
+                <div>
+                    <input class="form-button" type="submit" value="Register"/>  
+                </div>
+            </form>
+        </div>
+        </div>
     </div>
 </body>
 </html>
