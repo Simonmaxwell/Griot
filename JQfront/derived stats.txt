@@ -1,0 +1,6 @@
+health = 100 + ((presence * vitMod) * level)
+vigor = levelValue + elegance/12
+vim = vigor * .67 +resolve/12
+initiative = (sympathy + elegance) / 4
+shrug = presence + 5
+resolution = level + resolve

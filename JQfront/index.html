@@ -13,6 +13,7 @@
 	crossorigin="anonymous"></script>
 	<script src="https://use.fontawesome.com/ca306a4003.js">
 	</script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="app.js"></script>
 	<link rel="stylesheet" type="text/css" href="main.css">
 
@@ -20,21 +21,13 @@
 </head>
 <body>
 	<nav>
-		<button class="nav-button search-button" type="submit">Search</button>
-		<button id="re-fridge-button" class="nav-button" type="submit">Character Sheets</button>
-		<a href="https://github.com/Simonmaxwell/griot"> <button id="github-button" class="nav-button" type="submit">GitHub</button> </a>
+		<button id="logout-button" class="nav-button">Logout</button>
+		<a href="https://github.com/Simonmaxwell/griot" class="nav-button"> <button id="github-button" class="nav-button" type="submit">GitHub</button> </a>
 	</nav>
-	
-	<div id="splash-page-container">
-		<div id="landing-page-inner">
-			<div id="title">Griot</div>	
-			Welcome to Griot. This is a tool for creating and editing character sheets for the NaLS tabletop system. With Griot you can create new character sheets as well as view and edit existing sheets.
-			<div><button id="welcome-button">Start</button></div>
-		</div>
-	</div>
 
-	<div id="character-sheet-container" class="container">
-		<div id="new-character">
+	<div id="character-sheet-container">
+		<div id="new-character" class="rendered-character">
+			<h3>New Character</h3>
 			<form id="character-form">
 				<label for="name">Name</label>
 				<input id="new-name" type="text" name="name">
@@ -56,11 +49,17 @@
 
 				<button type="submit">Submit</button>
 			</form>
+
+			<div class="plus-button">
+				<button id="new-character-button"><i id="plus-icon" class="fas fa-plus fa-6x"></i></button>
+			</div>
+
 		</div>
-		<div id="update-character">
+		<div id="update-character" class="rendered-character">
 			<form id="update-character-form">
 				<label for="name">Name</label>
-				<select id="character-dropdown"></select>
+				<input id="name" type="text" name="">
+				<br />
 				<label for="level">Level</label>
 				<input id="level" type="number" name="level">
 
@@ -74,12 +73,10 @@
 				<input id="resolve" type="number" name="resolve">
 				<label for="elegance">Elegance</label>
 				<input id="elegance" type="number" name="elegance">
-				<button type="submit">Submit</button>
+				<button class="update" type="submit">Submit</button>
 			</form>
 		</div>
-		<div id="test-div">
-			
-		</div>
+		<div id="test-div"></div>
 	</div>
 </body>
 </html>
