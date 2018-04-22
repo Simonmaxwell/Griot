@@ -12,8 +12,16 @@ input {
 	display: block;
 }
 
+label {
+	margin-top: .5rem;
+}
+
 #new-character{
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .nav-button {
@@ -24,16 +32,6 @@ input {
     border-radius: .5rem;
     cursor:pointer;
     margin:.5rem;
-}
-
-.plus-button {
-	position: absolute;
-	width: 50px;
-	margin: 0 auto;
-	top:50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-
 }
 
 #new-character-button {

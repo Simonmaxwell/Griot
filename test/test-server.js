@@ -4,7 +4,7 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 
 const mongoose = require('mongoose');
-mongoose.Promis = global.Promise
+mongoose.Promise = global.Promise
 
 const {app, runServer, closeServer} = require('../server');
 const {CharacterSheet} = require('../character-sheet-schema');
@@ -14,7 +14,7 @@ chai.use(chaiHttp);
 describe('test-server', function() {
 
   before(function() {
-    return runServer();
+    return runServer("mongodb://localhost/griot-unit-tests");
   });
 
   after(function() {
@@ -23,10 +23,16 @@ describe('test-server', function() {
 
   beforeEach(function() {
     mongoose.connection.dropDatabase();
+    const newUser = {
+      username: "test",
+      password: "test"
+    };
+
     const newSheet = {
       name: 'Firstname Lastname',
       level: 10
     };
+
     return chai.request(app)
       .post('/character-sheet')
       .send(newSheet)
@@ -39,7 +45,7 @@ describe('test-server', function() {
 
   it('should list character sheets on GET', function() {
     return chai.request(app)
-      .get('/character-sheet')
+      .get(`/character-sheet/test`)
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;
