@@ -17,6 +17,7 @@ input {
 }
 
 .nav-button {
+	right: 10;
 	border:none;
     background:#7f7f7f;
     color:#dcdcdc;
