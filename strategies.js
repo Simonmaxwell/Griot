@@ -7,7 +7,7 @@ const {secret} = require('./config');
 
 const localStrategy = new LocalStrategy(
   function(username, password, done) {
-    console.log("in the authrouter");
+    //console.log("in the authrouter");
     User.findOne({ username: username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {

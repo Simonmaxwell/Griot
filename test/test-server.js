@@ -11,6 +11,18 @@ const {CharacterSheet} = require('../character-sheet-schema');
 
 chai.use(chaiHttp);
 
+let authToken;
+
+function login(newUser) {
+  chai.request(app)
+      .post('/login')
+      .send(newUser)
+      .then(res => {
+        console.log("response is", res.body.authToken)
+        authToken = res.body.authToken;
+      })
+};
+
 describe('test-server', function() {
 
   before(function() {
@@ -27,15 +39,24 @@ describe('test-server', function() {
       username: "test",
       password: "test"
     };
-
     const newSheet = {
       name: 'Firstname Lastname',
       level: 10
     };
 
-    return chai.request(app)
+    chai.request(app)
+      .post('/register')
+      .send(newUser)
+      .then(res => {
+        console.log("register response is", res.body)
+        login(newUser)
+      }) 
+
+    chai.request(app)
       .post('/character-sheet')
-      .send(newSheet)
+      .send(newSheet);
+      
+    return;
     
   });
 
@@ -44,8 +65,10 @@ describe('test-server', function() {
   });
 
   it('should list character sheets on GET', function() {
+    console.log("token is " + authToken)
     return chai.request(app)
       .get(`/character-sheet/test`)
+      .set("Authorization", `Bearer ${authToken}`)
       .then(function(res) {
         res.should.have.status(200);
         res.should.be.json;

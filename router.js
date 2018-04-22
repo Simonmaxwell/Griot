@@ -43,7 +43,7 @@ router.post('/refresh', jwtAuth, (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   User
     //.find(check to see user exists?)
     .create({
@@ -51,7 +51,7 @@ router.post('/register', (req, res) => {
       password: req.body.password
     })
     .then(user => {
-      console.log("Yo dog you made:", user);
+      //console.log("Yo dog you made:", user);
       res.status(201).json(user);
     })
     .catch(err => {
@@ -68,7 +68,7 @@ router.get('/character-sheet/:user', jwtAuth, (req, res) => {
 	CharacterSheet
     .find({user: req.params.user})
     .then(characterSheets => {
-      console.log("What?", characterSheets);
+      //console.log("What?", characterSheets);
       res.status(200).json(characterSheets);
     })
     .catch(err => {
@@ -88,7 +88,7 @@ router.get('/character-sheet/detail/:id', (req, res) => {
 });
 
 router.post('/character-sheet', jsonParser, (req, res) => {
-  console.log("I have this thing:", req.body);
+  //console.log("I have this thing:", req.body);
   CharacterSheet
   .create({
     user: req.body.user,
@@ -102,8 +102,8 @@ router.post('/character-sheet', jsonParser, (req, res) => {
     elegance: req.body.elegance
   })
   .then(characterSheet => {
-    console.log("hey man it sent:", req.body)
-    console.log("Yo dog you made:", characterSheet);
+    //console.log("hey man it sent:", req.body)
+    //console.log("Yo dog you made:", characterSheet);
     res.status(201).json(characterSheet);
   })
   .catch(err => {
