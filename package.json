@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is an Interactive character generator for NaLS",
   "scripts": {
-    "start": "npm start",
+    "start": "node server.js",
     "test": "mocha"
   },
   "author": "The Good Maxwell <maxwellraden@gmail.com>",
