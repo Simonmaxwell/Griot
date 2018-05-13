@@ -29,6 +29,7 @@ input[type="username"], input[type="password"] {
     letter-spacing: .25rem;
     height:2.25rem;
     margin-bottom: .5rem;
+    max-width: 99%;
 }
 input[type="username"]:active, input[type="password"]:active,
 input[type="username"]:focus, input[type="password"]:focus {

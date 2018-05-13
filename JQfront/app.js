@@ -82,6 +82,7 @@ $(document).ready(function() {
 		var html = `
 		<div class="rendered-character" data=${character._id}>
 			<h3 class="character-name">${character.name}</h3>
+			<h4 class="character-name">${character.species}<h4>
 			<h4 class="character-level">Level:${character.level}</h4>
 			<div class="stats">
 				<p>influence:${character.influence}</p>
